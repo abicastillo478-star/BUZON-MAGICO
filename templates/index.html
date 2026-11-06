@@ -31,7 +31,7 @@ footer{text-align:center;color:#c5d5c9;font-size:.78rem;line-height:1.6;padding:
 <section id="answer"><div style="text-align:center;font-size:1.5rem">✨ ❄️ ✨</div><h3 id="answerTitle">Una respuesta especial</h3><p id="answerText"></p><div class="signature" id="signature"></div>
 <div class="video-box"><b>🎬 Un saludo especial</b><p id="videoMessage">También puedes ver un mensaje navideño.</p>
 <video id="characterVideo" controls playsinline preload="none" poster="/static/video-poster.jpg"><source id="videoSource" src="" type="video/mp4">Tu navegador no puede reproducir este video.</video>
-<small>Los videos se activarán cuando agregues los archivos cinematográficos autorizados. Mientras tanto, la respuesta personalizada funciona normalmente.</small></div></section>
+<small> Muy pronto podrás disfrutar de saludos especiales de Santa Claus y los Reyes Magos, con mensajes mágicos para toda la familia. </small></div></section>
 </section></main><footer>La respuesta se genera mediante IA cuando está configurada. No guardamos las cartas. Si algo te preocupa, habla también con una persona adulta de confianza.</footer>
 <script>
 let who="santa";const choices=[...document.querySelectorAll(".choice")];choices.forEach(b=>b.onclick=()=>{who=b.dataset.who;choices.forEach(x=>x.classList.toggle("active",x===b));});
