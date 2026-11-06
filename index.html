@@ -1,124 +1,89 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#102b27">
-<title>Buzón Mágico | Santa Claus y Reyes Magos</title>
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102c27"><title>El Buzón Mágico</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
-:root{--night:#102b27;--deep:#173d35;--red:#a7353b;--gold:#e8c77c;--cream:#fff8e9;--muted:#d9e3d6}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--cream);font-family:"DM Sans",sans-serif;background:radial-gradient(ellipse at 50% 0%,#285447 0%,#102b27 58%,#091b1a 100%);overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px);background-size:83px 83px,137px 137px;background-position:0 0,40px 60px;animation:snow 18s linear infinite}
-@keyframes snow{to{background-position:0 500px,40px 560px}}
-header{text-align:center;padding:35px 18px 14px;position:relative}
-.kicker{letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-size:.72rem;font-weight:700}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif}h1{font-size:clamp(2.3rem,7vw,4.6rem);line-height:1.04;margin:12px 0;color:#fff2d4;text-shadow:0 4px 22px #0006}
-.subtitle{color:var(--muted);max-width:650px;margin:0 auto;line-height:1.65}
-main{width:min(920px,calc(100% - 28px));margin:20px auto 60px}
-.panel{background:#fff9ed;color:#273b32;border:1px solid #e9d6a9;border-radius:25px;padding:clamp(20px,4vw,38px);box-shadow:0 22px 70px #0005;position:relative;overflow:hidden}
-.panel:before{content:"";position:absolute;inset:8px;border:1px solid #e8d7b6;border-radius:18px;pointer-events:none}
-.panel>*{position:relative}
-.intro{text-align:center;margin-bottom:24px}.intro h2{font-size:2rem;margin:0 0 7px;color:#24483c}.intro p{margin:0;color:#637267}
-.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:24px 0}
-.choice{border:2px solid #e4d7bf;background:#fffdf7;border-radius:18px;padding:19px 12px;cursor:pointer;text-align:center;color:#31483e;transition:.2s;font:inherit}
-.choice:hover,.choice.active{border-color:#b88a3e;transform:translateY(-2px);box-shadow:0 8px 20px #755a2418;background:#fff7e4}
-.choice .emoji{font-size:2.5rem;display:block;margin-bottom:8px}.choice strong{display:block;font-family:"Playfair Display",serif;font-size:1.25rem}.choice small{color:#718077}
-form{max-width:650px;margin:auto}.field{margin:16px 0}label{display:block;font-weight:700;font-size:.9rem;margin:0 0 7px;color:#385448}
-input,textarea{width:100%;border:1px solid #d8d2c4;border-radius:12px;padding:13px 14px;font:inherit;color:#263b32;background:#fffefa;outline:none}
-input:focus,textarea:focus{border-color:#b88a3e;box-shadow:0 0 0 3px #b88a3e20}textarea{min-height:150px;resize:vertical}
-.hint{font-size:.78rem;color:#758077;margin-top:6px}
-button.send{display:block;width:100%;border:0;border-radius:999px;padding:15px 20px;background:linear-gradient(135deg,#a7353b,#812a31);color:#fff8e9;font:700 1rem "DM Sans";cursor:pointer;box-shadow:0 8px 18px #7b2b302e;transition:.2s}
-button.send:hover{filter:brightness(1.08);transform:translateY(-1px)}button:disabled{opacity:.6;cursor:wait}
-.response{display:none;margin:25px auto 0;max-width:650px;background:#fffdf7;border:1px dashed #c69b54;border-radius:18px;padding:22px;color:#34483e;animation:appear .5s ease}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.response h3{font-size:1.6rem;color:#8c3439;margin:0 0 10px}.response p{line-height:1.7;white-space:pre-line}.signature{font-family:"Playfair Display",serif;font-size:1.25rem;color:#8c3439;text-align:right;margin-top:18px}
-.seal{text-align:center;font-size:2rem;margin-bottom:5px}
-footer{text-align:center;color:#b9cbbd;font-size:.8rem;padding:0 20px 30px;line-height:1.6}
-@media(max-width:520px){.choices{gap:9px}.choice{padding:15px 7px}.choice .emoji{font-size:2rem}.panel{border-radius:20px}}
-</style>
-</head>
-<body>
-<header>
-  <div class="kicker">✦ Una pequeña magia de Navidad ✦</div>
-  <h1>El Buzón Mágico</h1>
-  <p class="subtitle">Un lugar especial para enviar tus deseos, contar tus aventuras y recibir un mensaje desde el mundo de la Navidad.</p>
-</header>
-<main>
-<section class="panel">
-  <div class="intro">
-    <h2>¿A quién quieres escribir?</h2>
-    <p>Escoge tu buzón y deja que la magia haga el resto.</p>
-  </div>
-  <div class="choices" role="group" aria-label="Elige destinatario">
-    <button class="choice active" type="button" data-who="santa" aria-pressed="true"><span class="emoji">🎅</span><strong>Santa Claus</strong><small>Buzón del Polo Norte</small></button>
-    <button class="choice" type="button" data-who="reyes" aria-pressed="false"><span class="emoji">👑</span><strong>Los Reyes Magos</strong><small>Buzón de Oriente</small></button>
-  </div>
-  <form id="letterForm">
-    <div class="field">
-      <label for="name">¿Cómo te llamas? (opcional)</label>
-      <input id="name" maxlength="35" autocomplete="given-name" placeholder="Escribe tu nombre o apodo">
-    </div>
-    <div class="field">
-      <label for="letter">Tu carta</label>
-      <textarea id="letter" maxlength="1200" required placeholder="¡Hola! Quiero contarles que este año..."></textarea>
-      <div class="hint">Puedes escribir tus deseos, hacer una pregunta o contar algo bonito. No incluyas tu dirección, teléfono ni otros datos privados.</div>
-    </div>
-    <button class="send" id="sendBtn" type="submit">✉️ Enviar mi carta mágica</button>
-  </form>
-  <section class="response" id="response" aria-live="polite">
-    <div class="seal">✨ 💌 ✨</div>
-    <h3 id="responseTitle">¡Tu carta llegó!</h3>
-    <p id="responseText"></p>
-    <div class="signature" id="signature"></div>
-  </section>
-</section>
-</main>
-<footer>Hecho con ilusión y espíritu navideño. Esta demostración responde en tu dispositivo: las cartas no se envían ni se guardan en un servidor.</footer>
+:root{--pine:#102c27;--gold:#e9c77d;--paper:#fff8e9;--ink:#30463b;--red:#a63840}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:"DM Sans",sans-serif;color:#fff8e9;background:radial-gradient(ellipse at 50% -10%,#3b725a,#1b493d 38%,#102c27 75%,#091b19);overflow-x:hidden}
+.snow{position:fixed;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(2px 2px at 80px 120px,#fff,transparent),radial-gradient(1.5px 1.5px at 150px 70px,#fff,transparent);background-size:260px 240px;animation:snow 18s linear infinite}
+@keyframes snow{to{background-position:0 480px}}
+header{text-align:center;padding:36px 18px 20px;position:relative}.eyebrow{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:.7rem;font-weight:700}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif}h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1;margin:14px 0;color:#fff0cc;text-shadow:0 5px 28px #0006}
+header p{max-width:650px;margin:14px auto 0;line-height:1.7;color:#e0eadf}
+main{width:min(920px,calc(100% - 26px));margin:12px auto 55px;position:relative}
+.shell{background:linear-gradient(145deg,#fffdf6,#f7ecd5);color:var(--ink);border-radius:28px;padding:clamp(20px,4vw,42px);box-shadow:0 25px 75px #0006;border:1px solid #e8d2a3;position:relative}
+.shell:before{content:"";position:absolute;inset:9px;border:1px solid #e8d5b5;border-radius:21px;pointer-events:none}.shell>*{position:relative}
+.intro{text-align:center}.intro .star{font-size:1.4rem;color:#b78b3d}.intro h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:5px 0;color:#23483a}.intro p{margin:0;color:#718075}
+.destinations{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:25px auto;max-width:610px}
+.dest{border:2px solid #e4d6bc;background:#fffdf8;border-radius:19px;padding:17px 12px;cursor:pointer;color:var(--ink);font:inherit;transition:.22s}
+.dest:hover,.dest.selected{border-color:#bd9147;background:#fff5df;transform:translateY(-3px);box-shadow:0 9px 22px #7e60201c}
+.dest .icon{font-size:2.35rem;display:block;margin-bottom:5px}.dest strong{font:600 1.25rem "Playfair Display",serif;display:block}.dest small{color:#758177}
+form{max-width:650px;margin:auto}.field{margin:15px 0}label{display:block;font-size:.9rem;font-weight:700;color:#385448;margin-bottom:7px}
+input,textarea{width:100%;border:1px solid #d8d1c2;border-radius:13px;padding:14px;background:#fffefa;color:#293e34;font:inherit;outline:none}
+input:focus,textarea:focus{border-color:#b78b3d;box-shadow:0 0 0 3px #b78b3d22}textarea{min-height:155px;resize:vertical;line-height:1.55}
+.note{font-size:.78rem;color:#778278;line-height:1.5;margin-top:6px}
+.send{display:block;width:100%;border:0;border-radius:999px;padding:15px 18px;background:linear-gradient(135deg,#ad3e45,#7f2932);color:#fff8e9;font:700 1rem "DM Sans";cursor:pointer;box-shadow:0 9px 20px #812e352e;transition:.2s}.send:hover{transform:translateY(-2px);filter:brightness(1.08)}.send:disabled{opacity:.65;cursor:wait}
+#delivery{display:none;text-align:center;padding:27px 8px 8px;max-width:650px;margin:12px auto 0}
+.envelope-scene{height:190px;display:grid;place-items:center;perspective:900px}.envelope{position:relative;width:min(310px,82vw);height:155px;background:#b84649;border-radius:8px 8px 14px 14px;box-shadow:0 15px 30px #56312a35;transform:translateY(18px)}
+.envelope:before,.envelope:after{content:"";position:absolute;bottom:0;width:0;height:0;border-style:solid;z-index:3}
+.envelope:before{left:0;border-width:78px 155px 0 0;border-color:transparent #d85d5d transparent transparent}.envelope:after{right:0;border-width:78px 0 0 155px;border-color:transparent transparent transparent #c94c51}
+.flap{position:absolute;top:0;left:0;width:0;height:0;border-left:155px solid transparent;border-right:155px solid transparent;border-top:92px solid #ed7770;transform-origin:top;z-index:5;transition:transform .75s ease}
+.letter-card{position:absolute;z-index:2;left:8%;width:84%;height:125px;bottom:10px;background:#fff9e9;border:1px solid #e6d2a8;border-radius:5px;color:#8a3b3b;display:flex;align-items:center;justify-content:center;font:600 1.2rem "Playfair Display",serif;box-shadow:0 4px 10px #0002;transition:transform 1s .45s ease}
+.stamp{position:absolute;z-index:6;top:17px;left:calc(50% - 19px);width:38px;height:38px;border-radius:50%;background:#e9c77d;color:#7d3b31;display:grid;place-items:center;font-size:1.2rem;border:2px dashed #fff1c9}
+#delivery.opening .flap{transform:rotateX(180deg);z-index:1}#delivery.opening .letter-card{transform:translateY(-112px) rotate(-2deg)}
+.delivery-caption{color:#53685a;font-weight:600;margin:7px 0 0}
+.reply{display:none;max-width:650px;margin:24px auto 0;background:#fffdf7;border:1px solid #dfc58f;border-radius:19px;padding:24px;color:#33483d;text-align:left;box-shadow:0 10px 30px #775b2012;animation:replyIn .7s ease both}
+@keyframes replyIn{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.reply .spark{text-align:center;font-size:1.6rem}.reply h3{text-align:center;color:#913941;font-size:1.65rem;margin:8px 0 13px}.reply p{white-space:pre-line;line-height:1.75;margin:0}.sign{text-align:right;font:600 1.2rem "Playfair Display",serif;color:#923b40;margin-top:18px}
+.again{display:block;margin:18px auto 0;background:transparent;border:1px solid #b99556;color:#76552d;padding:10px 18px;border-radius:999px;font:600 .9rem "DM Sans";cursor:pointer}
+footer{text-align:center;color:#c5d5c9;font-size:.78rem;line-height:1.6;padding:0 20px 28px;position:relative}
+@media(max-width:500px){.destinations{gap:9px}.dest{padding:14px 6px}.dest .icon{font-size:2rem}.shell{border-radius:22px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style></head><body>
+<div class="snow" aria-hidden="true"></div>
+<header><div class="eyebrow">✦ Un lugar donde los deseos llegan ✦</div><h1>El Buzón Mágico</h1><p>Prepara tu carta, cuéntanos lo que llevas en el corazón y recibe una respuesta especial desde el mundo de la Navidad.</p></header>
+<main><section class="shell">
+<div class="intro"><div class="star">✧ ✦ ✧</div><h2>¿A quién va dirigida tu carta?</h2><p>Elige tu buzón mágico para comenzar.</p></div>
+<div class="destinations" role="group" aria-label="Destinatario">
+<button class="dest selected" type="button" data-who="santa" aria-pressed="true"><span class="icon">🎅</span><strong>Santa Claus</strong><small>Polo Norte</small></button>
+<button class="dest" type="button" data-who="reyes" aria-pressed="false"><span class="icon">👑</span><strong>Reyes Magos</strong><small>Oriente</small></button></div>
+<form id="letterForm"><div class="field"><label for="name">Tu nombre (opcional)</label><input id="name" maxlength="35" placeholder="¿Cómo te llamas?"></div>
+<div class="field"><label for="letter">Escribe tu carta</label><textarea id="letter" maxlength="1200" required placeholder="Hola, Santa... Quiero contarte que este año..."></textarea><div class="note">Puedes contar tus alegrías, deseos, hacer preguntas o hablar de algo que te gustaría mejorar. Por seguridad, no escribas tu dirección, teléfono, escuela ni otros datos privados.</div></div>
+<button class="send" id="sendBtn" type="submit">✉️ Doblar y enviar mi carta</button></form>
+<section id="delivery" aria-live="polite"><div class="envelope-scene"><div class="envelope"><div class="letter-card">Una carta para ti ✨</div><div class="flap"></div><div class="stamp">★</div></div></div><p class="delivery-caption" id="deliveryCaption">Tu carta viaja hacia el mundo mágico...</p></section>
+<section class="reply" id="reply" aria-live="polite"><div class="spark">✨ ❄️ ✨</div><h3 id="replyTitle">¡Una respuesta para ti!</h3><p id="replyText"></p><div class="sign" id="sign"></div><button class="again" id="again" type="button">Escribir otra carta</button></section>
+</section></main><footer>Una experiencia navideña para compartir ilusión. Las respuestas se generan en tu dispositivo; las cartas no se envían ni se almacenan.</footer>
 <script>
-const choices=[...document.querySelectorAll('.choice')];
-let recipient='santa';
-choices.forEach(btn=>btn.addEventListener('click',()=>{
-  recipient=btn.dataset.who;
-  choices.forEach(b=>{const active=b===btn;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
-}));
-const pools={
- santa:{
-  greeting:["¡Jo, jo, jo!","¡Saludos desde el Polo Norte!","¡Qué alegría recibir noticias tuyas!"],
-  thanks:["Gracias por compartir tu carta conmigo. Cada mensaje es especial y lo leo con mucho cariño.","Tu carta ha llegado a mi buzón mágico. ¡Gracias por tomarte el tiempo de escribirme!"],
-  kind:["Me encantó leer lo que me cuentas. Recuerda que los gestos amables, ayudar y compartir son regalos que podemos dar todos los días.","Sigue cultivando esa alegría y esa bondad. Las pequeñas acciones pueden hacer muy felices a quienes te rodean."],
-  wish:["¡Qué deseo tan bonito! Espero que esta Navidad esté llena de momentos especiales, sorpresas y mucho cariño.","Ya leí lo que te gustaría recibir. Recuerda que la magia de estas fechas también está en compartir tiempo y crear recuerdos."],
-  question:["¡Buena pregunta! En el Polo Norte siempre hay mucho movimiento, pero los duendes y yo trabajamos en equipo para preparar una Navidad llena de ilusión.","Me alegra que tengas curiosidad. Hay muchos secretos navideños, pero uno que sí puedo contarte es que la alegría crece cuando la compartimos."],
-  general:["Gracias por confiarme tus pensamientos. Te deseo días llenos de ilusión, juegos, aprendizaje y momentos felices junto a las personas que te quieren.","He recibido tu mensaje con mucho cariño. Nunca dejes de imaginar, aprender y disfrutar de las pequeñas cosas."]
- },
- reyes:{
-  greeting:["¡Un saludo desde Oriente!","¡La estrella nos ha guiado hasta tu carta!","¡Qué alegría recibir noticias tuyas!"],
-  thanks:["Tu carta ha llegado a nuestro buzón real. Gracias por escribirnos con tanta ilusión.","Hemos leído tu mensaje con mucho cariño. ¡Gracias por compartirlo con nosotros!"],
-  kind:["Nos alegra saber de tus buenos gestos. La generosidad, el respeto y ayudar a los demás son tesoros que brillan todo el año.","Sigue llenando tus días de bondad. Cada acto amable deja una huella bonita."],
-  wish:["¡Qué deseo tan especial! Esperamos que estos días te regalen ilusión, unión y recuerdos maravillosos.","Hemos leído tus deseos. Recuerda que uno de los regalos más valiosos es compartir momentos con quienes quieres."],
-  question:["¡Qué buena pregunta! Nuestra estrella nos acompaña en el viaje y nos recuerda que la esperanza puede iluminar cualquier camino.","Nos encanta tu curiosidad. En cada viaje aprendemos algo nuevo, y esperamos que tú también tengas muchas aventuras bonitas."],
-  general:["Gracias por contarnos un pedacito de tu mundo. Te mandamos nuestros mejores deseos para una Navidad llena de paz y alegría.","Tu mensaje nos ha llegado al corazón. Sigue soñando, aprendiendo y compartiendo tu luz con los demás."]
- }
-};
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
-document.getElementById('letterForm').addEventListener('submit',e=>{
- e.preventDefault();
- const letter=document.getElementById('letter').value.trim();
- if(!letter)return;
- const name=document.getElementById('name').value.trim();
- const p=pools[recipient];
- const lower=letter.toLowerCase();
- let category='general';
- if(/gracias|ayud|compart|port[eé] bien|me porté|bueno|buena|familia|amig/.test(lower))category='kind';
- if(/quiero|deseo|me gustaría|regalo|juguete|bicicleta|muñec|pelota|libro/.test(lower))category='wish';
- if(/\?|cómo|cuando|cuándo|por qué|porque|dónde|quién/.test(lower))category='question';
- const greeting=pick(p.greeting),body=pick(p[category]),thanks=pick(p.thanks);
- const opening=name?`¡Hola, ${name}! ${greeting}`:greeting;
- document.getElementById('responseTitle').textContent=recipient==='santa'?'¡Mensaje desde el Polo Norte!':'¡Mensaje desde Oriente!';
- document.getElementById('responseText').textContent=`${opening}\n\n${thanks}\n\n${body}\n\n¡Te deseamos una Navidad maravillosa!`;
- document.getElementById('signature').textContent=recipient==='santa'?'Con cariño, Santa Claus 🎅':'Con cariño, Melchor, Gaspar y Baltasar 👑';
- const box=document.getElementById('response');box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});
-});
-</script>
-</body>
-</html>
+const buttons=[...document.querySelectorAll('.dest')];let who='santa';
+buttons.forEach(b=>b.addEventListener('click',()=>{who=b.dataset.who;buttons.forEach(x=>{const on=x===b;x.classList.toggle('selected',on);x.setAttribute('aria-pressed',String(on));});}));
+const messages={
+santa:{hello:["¡Jo, jo, jo! ¡Saludos desde el Polo Norte!","¡Qué alegría recibir tu carta!","¡Un abrazo navideño desde mi taller!"],
+kind:["Me alegra mucho que quieras contarme tus buenos momentos. La amabilidad, la paciencia y ayudar a los demás son regalos que podemos compartir cada día.","¡Qué bonito que estés intentando hacer cosas buenas! Los pequeños gestos, como escuchar, ayudar y compartir, hacen una gran diferencia."],
+repair:["Gracias por contarme la verdad. A todos nos pasa que a veces tomamos decisiones que no salen bien; eso no significa que no podamos aprender y hacerlo mejor la próxima vez.","¡Gracias por ser sincero/a conmigo! Lo importante no es ser perfecto, sino reconocer cuando algo salió mal, pensar cómo se sintió la otra persona y tratar de repararlo con una disculpa o una buena acción.","Hasta en el taller del Polo Norte cometemos errores de vez en cuando. Podemos aprender de ellos: hablar con calma, pedir perdón si lastimamos a alguien y probar de nuevo. ¡Cada día trae una nueva oportunidad!"],
+wish:["He leído tus deseos con mucha atención. Ojalá esta Navidad esté llena de sorpresas bonitas, cariño y momentos para recordar.","¡Qué deseos tan especiales! Recuerda que la magia también vive en compartir, jugar y pasar tiempo con las personas que te quieren."],
+question:["¡Buena pregunta! En el Polo Norte trabajamos en equipo y cada duende aporta algo especial. La cooperación hace que las cosas difíciles sean más fáciles.","Me encanta tu curiosidad. Nunca dejes de hacer preguntas y descubrir cosas nuevas."],
+general:["Gracias por confiarme tus pensamientos. Te deseo unas fiestas llenas de cariño, descanso, diversión y momentos felices.","Tu carta ha llegado a mis manos. Sigue aprendiendo, imaginando y tratando a los demás con respeto. ¡Eso también es magia!"]},
+reyes:{hello:["¡Saludos desde Oriente! La estrella nos ha acompañado hasta tu carta.","¡Qué alegría recibir noticias tuyas!","¡La estrella brillante nos anunció que teníamos una carta especial!"],
+kind:["Nos alegra leer sobre tus buenos gestos. La generosidad y el respeto son tesoros que brillan durante todo el año.","¡Qué bonito que estés intentando hacer el bien! Cada acto amable puede alegrarle el día a alguien."],
+repair:["Gracias por hablarnos con sinceridad. Todas las personas se equivocan alguna vez; lo valioso es reconocerlo y buscar una manera de mejorar.","No tienes que ser perfecto/a para merecer cariño. Si algo no salió bien, puedes aprender, pedir disculpas cuando corresponda y volver a intentarlo con paciencia.","Nos alegra que puedas hablar de ello. Piensa qué podrías hacer diferente la próxima vez y, si alguien se sintió mal, intenta reparar la situación con respeto. Siempre podemos dar un paso mejor."],
+wish:["Hemos leído tus deseos con mucha atención. Esperamos que estas fiestas estén llenas de unión, ilusión y recuerdos bonitos.","¡Qué deseo tan especial! Recuerda que los regalos más valiosos también pueden ser el cariño, el tiempo y las experiencias compartidas."],
+question:["¡Qué pregunta tan interesante! Nuestra estrella nos guía, pero también nos orientan la paciencia, el trabajo en equipo y la esperanza.","Nos encanta tu curiosidad. Sigue aprendiendo y buscando respuestas; cada día puede enseñarnos algo nuevo."],
+general:["Gracias por compartir un pedacito de tu mundo con nosotros. Te enviamos nuestros mejores deseos para estas fiestas.","Hemos recibido tu mensaje con mucho cariño. Que nunca te falten motivos para aprender, reír y compartir."]}};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function classify(s){const t=s.toLowerCase();
+if(/no me porte bien|no me porté bien|me porte mal|me porté mal|me comporte mal|me comporté mal|hice travesuras|hice una travesura|me regañaron|me pelee|me peleé|grite|grité|menti|mentí|desobedeci|desobedecí|fui grosero|fui grosera|lastime|lastimé|moleste|molesté|me equivoque|me equivoqué|me arrepiento|me siento mal/.test(t))return'repair';
+if(/quiero|quisiera|deseo|me gustaria|me gustaría|regalo|juguete|bicicleta|muñec|pelota|libro/.test(t))return'wish';
+if(/\?|como|cómo|cuando|cuándo|por que|por qué|donde|dónde|quien|quién/.test(t))return'question';
+if(/ayude|ayudé|comparti|compartí|gracias|me porte bien|me porté bien|fui amable/.test(t))return'kind';return'general';}
+const form=document.getElementById('letterForm'),delivery=document.getElementById('delivery'),reply=document.getElementById('reply');
+form.addEventListener('submit',e=>{e.preventDefault();const text=document.getElementById('letter').value.trim();if(!text)return;
+const name=document.getElementById('name').value.trim(),p=messages[who],type=classify(text);
+reply.style.display='none';delivery.style.display='block';delivery.classList.remove('opening');document.getElementById('deliveryCaption').textContent='Tu carta está entrando al buzón mágico...';
+requestAnimationFrame(()=>delivery.classList.add('opening'));document.getElementById('sendBtn').disabled=true;
+setTimeout(()=>{document.getElementById('replyTitle').textContent=who==='santa'?'Una respuesta desde el Polo Norte':'Una respuesta desde Oriente';
+document.getElementById('replyText').textContent=(name?`¡Hola, ${name}! `:'')+pick(p.hello)+'\n\n'+pick(p[type])+'\n\nTe deseamos una Navidad llena de esperanza, cariño y nuevas oportunidades.';
+document.getElementById('sign').textContent=who==='santa'?'Con cariño, Santa Claus 🎅':'Con cariño, Melchor, Gaspar y Baltasar 👑';
+document.getElementById('deliveryCaption').textContent='¡Tu carta ha llegado! Alguien especial te ha escrito...';reply.style.display='block';document.getElementById('sendBtn').disabled=false;reply.scrollIntoView({behavior:'smooth',block:'center'});},1900);});
+document.getElementById('again').addEventListener('click',()=>{form.reset();reply.style.display='none';delivery.style.display='none';delivery.classList.remove('opening');document.getElementById('letter').focus();window.scrollTo({top:0,behavior:'smooth'});});
+</script></body></html>
